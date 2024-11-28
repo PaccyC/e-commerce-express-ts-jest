@@ -6,6 +6,7 @@ import productRouter from "./routes/product.routes"
 const app:express.Application = express();
 
 app.use(express.json())
+
 app.use(morgan("dev"))
 
 

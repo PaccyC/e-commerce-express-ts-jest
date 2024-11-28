@@ -13,7 +13,7 @@ import {
 router.post("/",asyncHandler(createCategoryHandler))
 router.get("/",asyncHandler(getAllCategoriesHandler))
 router.put("/edit/:id",asyncHandler(updateCategoryHandler))
-router.delete("/delete:/id",asyncHandler(deleteCategoryHandler))
+router.delete("/delete/:id",asyncHandler(deleteCategoryHandler))
 router.get("/:id",asyncHandler(getCategoryByIdHandler))
 
 export default router;
