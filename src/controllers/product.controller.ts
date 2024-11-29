@@ -16,14 +16,14 @@ export const getAllProductsHandler = async(req:Request,res:Response)=>{
 
     const data= await getAllProducts();
     
-    res.json(apiResponse().success(data));
+    res.json(apiResponse().success(200,data)).json(200);
 }
 
 export const createProductHandler = async(req:Request,res:Response)=>{
     const body= req.body as CreateProduct
     const data= await createProduct(body);
 
-    res.json(apiResponse().success(data))
+    res.json(apiResponse().success(201,data)).status(201)
 }
 
 
@@ -33,7 +33,7 @@ export const getProductByIdHandler = async (req:Request,res:Response) =>{
 
     const data= await getProductById(id);
 
-    res.json(apiResponse().success(data))
+    res.json(apiResponse().success(200,data)).status(200);
 }
 
 
@@ -42,7 +42,7 @@ export const removeProductHandler = async (req:Request,res:Response) =>{
 
     const data= await removeProduct(id);
 
-    res.json(apiResponse().success(data))
+    res.json(apiResponse().success(204,data)).status(204)
 }
 
 export const updateProductHandler = async(req:Request, res: Response)=>{
@@ -51,5 +51,5 @@ export const updateProductHandler = async(req:Request, res: Response)=>{
 
     const data= await updateProduct(id,body);
 
-    res.json(apiResponse().success(data))
+    res.json(apiResponse().success(200,data)).status(200);
 }

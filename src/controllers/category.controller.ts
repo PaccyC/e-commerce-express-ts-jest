@@ -14,14 +14,14 @@ export const createCategoryHandler = async(req:Request,res:Response)=>{
     const body = req.body as CreateCategory
     const data= await createCategory(body)
     
-    res.json(apiResponse().success(data))
+    res.json(apiResponse().success(201,data)).status(201)
 
 }
 
 export const getAllCategoriesHandler = async(req:Request,res:Response)=>{
 
     const data= await getCategories();
-    res.json(apiResponse().success(data))
+    res.json(apiResponse().success(200,data)).status(200)
 }
 
 
@@ -34,7 +34,7 @@ export const getCategoryByIdHandler = async (req:Request,res:Response) =>{
         res.json(apiResponse().error(createHttpError.NotFound("Category not found")));
     }
 
-    res.json(apiResponse().success(data))
+    res.json(apiResponse().success(201,data)).status(200);
 }
 
 
@@ -49,7 +49,7 @@ export const updateCategoryHandler = async (req:Request,res:Response) =>{
         res.json(apiResponse().error(createHttpError.NotFound("Category not found")));
     }
 
-    res.json(apiResponse().success(data))
+    res.json(apiResponse().success(200,data)).status(200);
 }
 
 
@@ -59,5 +59,5 @@ export const deleteCategoryHandler = async (req:Request,res:Response) =>{
     
     await deleteCategory(id);
 
-    res.json(apiResponse().success({message: "Category deleted successfully"}))
+    res.json(apiResponse().success(204,{message: "Category deleted successfully"})).status(204)
 }

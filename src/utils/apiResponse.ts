@@ -2,8 +2,8 @@
 
 export const apiResponse = ()=>{
     return {
-        success: (data: any) => ({
-            status: 200,
+        success: (status:number,data: any) => ({
+            status,
             data
         }),
         error: (error: any) => ({
