@@ -12,6 +12,8 @@ interface DecodedToken {
 export interface CustomRequest extends Request {
     user?:IUSER 
 }
+
+
 export const auth = async(req:CustomRequest, res:Response,next:NextFunction) =>{
     try {
         

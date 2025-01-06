@@ -11,4 +11,6 @@ export interface IUSER {
     phoneNumber: string;
 }
 
+
+
 export type CreateUser = Omit<IUSER, '_id' | 'createdAt' | 'updatedAt'>;
