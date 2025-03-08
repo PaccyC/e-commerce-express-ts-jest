@@ -1,24 +1,28 @@
-FROM node:20-slim as base
+# Base Stage
+FROM node:20-slim AS base
 ENV NPM_HOME="/npm"
 ENV PATH="$NPM_HOME:$PATH"
 RUN corepack enable
 COPY . /app
 WORKDIR /app
 
-FROM base AS build
-RUN --mount=type=cache,id=npm,target=/npm/store npm install --frozen-lockfile
+# Install Dependencies
+FROM base AS dependencies
+RUN npm install --frozen-lockfile
+
+# Build Stage
+FROM dependencies AS build
 RUN npm run build
 
-
+# Production Image
 FROM gcr.io/distroless/nodejs20-debian11
 
-COPY --from=prod-deps /app/node_modules /app/node_modules
+WORKDIR /app
+COPY --from=dependencies /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
 COPY --from=build /app/package.json /app/package.json
 
-WORKDIR /app
+ENV PORT=8000
+EXPOSE 8000
 
-ENV PORT=5000
-EXPOSE 5000
-
-CMD [ "dist/index.js"]
+CMD ["node", "dist/index.js"]

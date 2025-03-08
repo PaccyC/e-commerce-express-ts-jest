@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest",
     "dev": " nodemon src/index.ts",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "build":"tsc"
   },
   "author": "",
   "license": "ISC",
