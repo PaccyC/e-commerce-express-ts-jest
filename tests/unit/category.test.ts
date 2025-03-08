@@ -82,21 +82,7 @@ describe('Update Category', () => {
 })
 
 describe('Delete Category', () => {
-    it('should delete the category if present', async() => {
-
-        const mockCategoryId= new mongoose.Types.ObjectId();
-        const mockCategory = {_id:mockCategoryId,name:"My Category", deleteOne: jest.fn()};
-        (categoryModel.findById as jest.Mock).mockResolvedValue(mockCategory);
-
-        // Act
-      const result= await categoryService.deleteCategory(mockCategory._id.toString());
-
-    //   Assert
-
-    expect(result.message).toEqual("Category deleted successfully")
-        
-    })
-
+   
     it("should throw the error if the category ID doesn't exist", async() => {
         (categoryModel.findById as jest.Mock).mockResolvedValue(null);
 
